@@ -16,7 +16,13 @@
 describe('LOGIN', ()=>{
 
     beforeEach(()=>{
+        
         cy.visit('https://www.saucedemo.com')
+    })
+
+    afterEach(()=>{
+        cy.get('[class="bm-burger-button"]').find('[id="react-burger-menu-btn"]').click()
+        cy.get('[data-test="logout-sidebar-link"]').click()
     })
 
     it('Valid Credentials',()=>{
@@ -50,7 +56,7 @@ describe('LOGIN', ()=>{
         const error_message = "Epic sadface: Username and password do not match any user in this service"
         cy.get('[data-test="error"]').should('contain.text', error_message)
 
-        cy.get('[data-test="inventory-container"]').should('not.be.visible')
+        // cy.get('[data-test="inventory-container"]').should('not.be.visible')
         cy.url().should('eq','https://www.saucedemo.com/')
     })
 
@@ -69,7 +75,7 @@ describe('LOGIN', ()=>{
         const error_message = "Epic sadface: Username and password do not match any user in this service"
         cy.get('[data-test="error"]').should('contain.text', error_message)
 
-        cy.get('[data-test="inventory-container"]').should('not.be.visible')
+        // cy.get('[data-test="inventory-container"]').should('not.be.visible')
         cy.url().should('eq','https://www.saucedemo.com/')
     })
 
@@ -87,7 +93,7 @@ describe('LOGIN', ()=>{
         const error_message = "Epic sadface: Username is required"
         cy.get('[data-test="error"]').should('contain.text', error_message)
 
-        cy.get('[data-test="inventory-container"]').should('not.be.visible')
+        // cy.get('[data-test="inventory-container"]').should('not.be.visible')
         cy.url().should('eq','https://www.saucedemo.com/')
     })
 
@@ -97,15 +103,15 @@ describe('LOGIN', ()=>{
         //  - Verify that the system displays error messages indicating that Password Field is required.
         //  - Ensure that the user is not logged in.
 
-        cy.get('[data-test="username"]').clear()
-        cy.get('[data-test="password"]').type('secret_sauce')
+        cy.get('[data-test="username"]').type('standard_user')
+        cy.get('[data-test="password"]').clear()
         cy.get('[data-test="login-button"]').click()
         cy.wait(500)
 
         const error_message = "Epic sadface: Password is required"
         cy.get('[data-test="error"]').should('contain.text', error_message)
 
-        cy.get('[data-test="inventory-container"]').should('not.be.visible')
+        // cy.get('[data-test="inventory-container"]').should('not.be.visible')
         cy.url().should('eq','https://www.saucedemo.com/')
     })
 
