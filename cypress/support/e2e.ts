@@ -14,7 +14,26 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
+import 'cypress-mochawesome-reporter/register';
 import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+declare global {
+    namespace Cypress {
+      interface Chainable {
+        /**
+         * Custom command for user login.
+         * @example cy.login('username', 'password')
+         */
+        login(username: string, password: string): Chainable<JQuery<HTMLElement>>
+
+        /**
+         * Custom command for user logout.
+         * @example cy.logout()
+         */
+        logout(): Chainable<JQuery<HTMLElement>>
+      }
+    }
+  }
