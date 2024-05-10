@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import { getRandomInt } from "../../support/utils"
+
 // Test Case: Add to Cart Functionality
 // Steps:
 //  - Click on the "Add to Cart" button for a product.
@@ -17,10 +19,11 @@ describe('Add To Cart', ()=>{
     })
 
     it('Verify that the product is added and removed from the shopping cart without any errors', ()=>{
-        cy.get('[data-test="inventory-item"]').eq(0).find('[class="pricebar"]')
+        const positon = getRandomInt(6)
+        cy.get('[data-test="inventory-item"]').eq(positon).find('[class="pricebar"]')
             .find('button').should('contain.text', 'Add to cart').click()
             cy.get('[data-test="shopping-cart-badge"]').should('contain.text', '1')
-        cy.get('[data-test="inventory-item"]').eq(0).find('[class="pricebar"]')
+        cy.get('[data-test="inventory-item"]').eq(positon).find('[class="pricebar"]')
             .find('button').should('contain.text', 'Remove').click()
         cy.get('[data-test="shopping-cart-link"]').should('not.contain.text', '1')
     })

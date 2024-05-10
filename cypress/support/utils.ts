@@ -31,3 +31,8 @@ export const getItemsDetails = (callback: (items: ItemDetails[]) => void): void 
         callback(itemsDetails);
     });
 };
+
+
+export function getRandomInt(max: number) {
+    return Math.floor(Math.random() * max);
+}
