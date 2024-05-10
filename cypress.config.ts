@@ -12,11 +12,20 @@ module.exports = defineConfig({
       html: false,
       json: true,
       reportDir: "cypress/reports",
+      charts: true,
+      reportPageTitle: 'Test Report',
+      embeddedScreenshots: false,
+      inlineAssets: true,
+      saveAllAttempts: true,
     },
     video: true,
+    videoCompression: 32,
     retries: {
-      runMode: 1,
-      openMode: 1
+      runMode: 0,
+      openMode: 0
+    },
+    env: {
+      baseURL: 'https://www.saucedemo.com/'
     }
   },
 });
